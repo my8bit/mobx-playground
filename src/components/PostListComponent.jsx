@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { observable, action } from "mobx";
+import { observable, action, values } from "mobx";
 import { observer } from "mobx-react";
 
 import PostComponent from "./PostComponent";
@@ -9,27 +9,25 @@ class PostList extends React.Component {
   @observable newTodoTitle = "";
 
   render() {
+    // console.log(values(this.props.store.posts));
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
           New Todo:
           <input
             type="text"
-            value={this.newTodoTitle}
-            onChange={this.handleInputChange}
+            value={ this.newTodoTitle }
+            onChange={ this.handleInputChange }
           />
           <button type="submit">Add</button>
         </form>
         <hr />
-        <ul>
-          {
-            console.log(this.props.store.todos.map)}
-          }
-          {
-            this.props.store.todos.map(post => (
-              <PostComponent todo={post} key={post.id} />
+         <ul>
+            {
+            values(this.props.store.posts).map((post, idx) => (
+              <PostComponent todo={post} key={idx} />
             ))
-          }
+            }
         </ul>
         Tasks left: {this.props.store.unfinishedTodoCount}
       </div>
@@ -50,3 +48,19 @@ class PostList extends React.Component {
 }
 
 export default PostList;
+
+/*
+        <ul>
+          {
+            console.log(this.props.store.posts.value)}
+          }
+          {
+            {
+            this.props.store.posts.map(post => (
+              <PostComponent todo={post} key={post.id} />
+            ))
+            }
+          }
+        </ul>
+
+*/
