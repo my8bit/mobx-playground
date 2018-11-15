@@ -3,7 +3,12 @@ import { observer } from "mobx-react";
 
 const Post = observer(({ todo }) => (
   <li>
-  	this is the post is about {todo.title}
+  	<h1>{todo.title}</h1>
+  	<h4>{todo.description}</h4>
+  	<p> {todo.body}</p>
+  	<p>
+  		{todo.tagList.map((tag, idx) => (<span key={idx}>{tag},&nbsp;</span>))}
+  	</p>
   </li>
 ));
 

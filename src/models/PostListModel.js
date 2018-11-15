@@ -8,7 +8,7 @@ export const PostListModelMobxState = types.model({
 })
 .actions(self => ({
 	addTodo(post) { // TODO refactor later
-		console.log('posts are: ', self.posts.push);
 		self.posts.push(post);
+		// console.log(post);
 	}
 }));
